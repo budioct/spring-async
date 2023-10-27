@@ -22,7 +22,7 @@ public class AsynchoronouseTest {
             helloAsync.helloAsync(); // task yang akan di jalankan setelah sleep 2 detik
         }
 
-        log.info("after call hello async"); // task yang pertama kali di jalankan
+        log.info("after call helloAsync() async"); // task yang pertama kali di jalankan
         Thread.sleep(Duration.ofSeconds(4)); // menunggu 4 detik // dari proses HelloAsync.hello() sleep 2 detik
 
         /**
@@ -49,7 +49,7 @@ public class AsynchoronouseTest {
             helloAsync.helloNonAsync(); // task yang akan di jalankan setelah sleep 2 detik
         }
 
-        log.info("after call hello async"); // task yang pertama kali di jalankan
+        log.info("after call helloNonAsync() async"); // task yang pertama kali di jalankan
         Thread.sleep(Duration.ofSeconds(3)); // menunggu 3 detik // dari proses HelloAsync.hello() sleep 2 detik
 
         /**

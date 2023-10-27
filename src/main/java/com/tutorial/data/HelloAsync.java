@@ -14,14 +14,14 @@ public class HelloAsync {
     @SneakyThrows
     public void helloNonAsync(){
         Thread.sleep(Duration.ofSeconds(2));
-        log.info("run hello after 2 seconds");
+        log.info("run helloNonAsync() after 2 seconds");
     }
 
-    @Async // menandai method ini harus berjalan secara asynchronouse (blocking) // secara default menggunakan arsitektur Thread Pool
+    @Async // menandai method ini harus berjalan secara asynchronouse (blocking) // secara default menggunakan arsitektur Thread Pool dengan max core pada cpu
     @SneakyThrows // akan di buatkan exception otomatis oleh lombok
     public void helloAsync() {
         Thread.sleep(Duration.ofSeconds(2));
-        log.info("run hello after 2 seconds");
+        log.info("run helloAsync() after 2 seconds");
     }
 
 }
