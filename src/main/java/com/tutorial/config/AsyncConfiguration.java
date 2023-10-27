@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 @Configuration
 public class AsyncConfiguration {
@@ -26,6 +27,17 @@ public class AsyncConfiguration {
     @Bean
     public Executor singleTaskExecutor(){
         return Executors.newSingleThreadExecutor(); // implementasi thread-pool dan max-thread-pool=1 thread untuk execution task worker
+    }
+
+    /**
+     * Custom Scheduled Executor
+     * ● Sama seperti Async, kita juga bisa membuat Scheduled Executor sendiri, caranya cukup membuat
+     *   bean dengan type ScheduledExecutorService, dan dengan nama bean taskScheduler
+     */
+
+    @Bean
+    public ScheduledExecutorService taskScheduled(){
+        return Executors.newScheduledThreadPool(10);
     }
 
 }

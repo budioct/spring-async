@@ -72,28 +72,28 @@ public class AsynchoronouseTest {
     }
 
     @Test
-    void HelloAsyncWithCostumeExecutorService() throws InterruptedException {
+    void HelloAsyncWithCustomExecutorService() throws InterruptedException {
 
         for (int i = 0; i < 100; i++) {
             helloAsync.helloAsyncWithCostumeExecutorService(); // task yang akan di jalankan setelah sleep 2 detik
         }
 
-        log.info("after call helloAsyncWithCostumeExecutorService() async"); // task yang pertama kali di jalankan
+        log.info("after call helloAsyncWithCustomExecutorService() async"); // task yang pertama kali di jalankan
         Thread.sleep(Duration.ofSeconds(4)); // menunggu 4 detik // dari proses HelloAsync.hello() sleep 2 detik
 
         /**
          * result:
          * 2023-10-27T14:42:15.716+07:00  INFO 9604 --- [           main] c.tutorial.testasync.AsynchoronouseTest  : after call helloAsync() async
-         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCostumeExecutorService() after 2 seconds VirtualThread[#44]/runnable@ForkJoinPool-1-worker-4
-         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCostumeExecutorService() after 2 seconds VirtualThread[#37]/runnable@ForkJoinPool-1-worker-3
-         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCostumeExecutorService() after 2 seconds VirtualThread[#36]/runnable@ForkJoinPool-1-worker-8
-         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCostumeExecutorService() after 2 seconds VirtualThread[#34]/runnable@ForkJoinPool-1-worker-7
-         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCostumeExecutorService() after 2 seconds VirtualThread[#42]/runnable@ForkJoinPool-1-worker-1
-         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCostumeExecutorService() after 2 seconds VirtualThread[#39]/runnable@ForkJoinPool-1-worker-5
-         * 2023-10-27T14:42:17.728+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCostumeExecutorService() after 2 seconds VirtualThread[#43]/runnable@ForkJoinPool-1-worker-3
-         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCostumeExecutorService() after 2 seconds VirtualThread[#38]/runnable@ForkJoinPool-1-worker-6
-         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCostumeExecutorService() after 2 seconds VirtualThread[#41]/runnable@ForkJoinPool-1-worker-2
-         * 2023-10-27T14:42:17.728+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCostumeExecutorService() after 2 seconds VirtualThread[#40]/runnable@ForkJoinPool-1-worker-8
+         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCustomExecutorService() after 2 seconds VirtualThread[#44]/runnable@ForkJoinPool-1-worker-4
+         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCustomExecutorService() after 2 seconds VirtualThread[#37]/runnable@ForkJoinPool-1-worker-3
+         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCustomExecutorService() after 2 seconds VirtualThread[#36]/runnable@ForkJoinPool-1-worker-8
+         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCustomExecutorService() after 2 seconds VirtualThread[#34]/runnable@ForkJoinPool-1-worker-7
+         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCustomExecutorService() after 2 seconds VirtualThread[#42]/runnable@ForkJoinPool-1-worker-1
+         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCustomExecutorService() after 2 seconds VirtualThread[#39]/runnable@ForkJoinPool-1-worker-5
+         * 2023-10-27T14:42:17.728+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCustomExecutorService() after 2 seconds VirtualThread[#43]/runnable@ForkJoinPool-1-worker-3
+         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCustomExecutorService() after 2 seconds VirtualThread[#38]/runnable@ForkJoinPool-1-worker-6
+         * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCustomExecutorService() after 2 seconds VirtualThread[#41]/runnable@ForkJoinPool-1-worker-2
+         * 2023-10-27T14:42:17.728+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCustomExecutorService() after 2 seconds VirtualThread[#40]/runnable@ForkJoinPool-1-worker-8
          */
 
     }

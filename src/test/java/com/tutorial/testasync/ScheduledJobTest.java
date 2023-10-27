@@ -30,7 +30,7 @@ public class ScheduledJobTest {
     }
 
     @Test
-    void testScheduledJobWithConstumeDefault() throws InterruptedException {
+    void testScheduledJobWithCustomDefault() throws InterruptedException {
 
         Thread.sleep(Duration.ofSeconds(5));
         Assertions.assertEquals(2L, job.getJob());
@@ -39,6 +39,20 @@ public class ScheduledJobTest {
          * result:
          * 2023-10-27T23:01:22.781+07:00  INFO 10404 --- [  my-schedule-1] com.tutorial.data.Job                    : 1 Run Job my-schedule-1
          * 2023-10-27T23:01:24.788+07:00  INFO 10404 --- [  my-schedule-1] com.tutorial.data.Job                    : 2 Run Job my-schedule-1
+         */
+
+    }
+
+    @Test
+    void testScheduledJobWithCustom() throws InterruptedException {
+
+        Thread.sleep(Duration.ofSeconds(5));
+        Assertions.assertEquals(2L, job.getJob());
+
+        /**
+         * result:
+         * 2023-10-27T23:15:23.703+07:00  INFO 12680 --- [pool-3-thread-1] com.tutorial.data.Job                    : 1 Run Job pool-3-thread-1
+         * 2023-10-27T23:15:25.722+07:00  INFO 12680 --- [pool-3-thread-1] com.tutorial.data.Job                    : 2 Run Job pool-3-thread-1
          */
 
     }
