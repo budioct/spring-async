@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.Duration;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 @Slf4j
 @SpringBootTest
@@ -16,7 +18,7 @@ public class AsynchoronouseTest {
     private HelloAsync helloAsync;
 
     @Test
-    void HelloAsync() throws InterruptedException {
+    void testHelloAsync() throws InterruptedException {
 
         for (int i = 0; i < 10; i++) {
             helloAsync.helloAsync(); // task yang akan di jalankan setelah sleep 2 detik
@@ -43,7 +45,7 @@ public class AsynchoronouseTest {
     }
 
     @Test
-    void helloNonAsync() throws InterruptedException {
+    void testHelloNonAsync() throws InterruptedException {
 
         for (int i = 0; i < 10; i++) {
             helloAsync.helloNonAsync(); // task yang akan di jalankan setelah sleep 2 detik
@@ -92,6 +94,20 @@ public class AsynchoronouseTest {
          * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCostumeExecutorService() after 2 seconds VirtualThread[#38]/runnable@ForkJoinPool-1-worker-6
          * 2023-10-27T14:42:17.722+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCostumeExecutorService() after 2 seconds VirtualThread[#41]/runnable@ForkJoinPool-1-worker-2
          * 2023-10-27T14:42:17.728+07:00  INFO 9604 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncWithCostumeExecutorService() after 2 seconds VirtualThread[#40]/runnable@ForkJoinPool-1-worker-8
+         */
+
+    }
+
+    @Test
+    void testHelloAsyncWithFutureTest() throws InterruptedException, ExecutionException {
+
+        Future<String> future = helloAsync.helloAsyncWithFuture("Budhi");
+        String response = future.get();
+        log.info("data: {}", response);
+
+        /**
+         * result: future<T> callable<T> --> completablefuture
+         * 2023-10-27T15:12:09.155+07:00  INFO 16640 --- [           main] c.tutorial.testasync.AsynchoronouseTest  : data: Hello Budhi from Thread VirtualThread[#34]/runnable@ForkJoinPool-1-worker-1
          */
 
     }
