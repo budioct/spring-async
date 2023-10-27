@@ -101,6 +101,10 @@ public class AsynchoronouseTest {
     @Test
     void testHelloAsyncWithFutureTest() throws InterruptedException, ExecutionException {
 
+        // interinsic lock pada completablefuture mirip dengan method ThreadCommunication
+        // get() --> await()
+        // complete() --> notify()
+
         Future<String> future = helloAsync.helloAsyncWithFuture("Budhi");
         String response = future.get();
         log.info("data: {}", response);
@@ -111,6 +115,46 @@ public class AsynchoronouseTest {
          */
 
     }
+
+    @Test
+    void testHelloAsyncWithDynamicExecutor1() throws InterruptedException, ExecutionException {
+
+        Future<String> future = helloAsync.helloAsyncWithFutureExecutionSingleThread("Budhi");
+        String response = future.get();
+        log.info("data: {}", response);
+
+        /**
+         * result: future<T> callable<T> --> completablefuture
+         * 2023-10-27T15:42:22.392+07:00  INFO 2640 --- [           main] c.tutorial.testasync.AsynchoronouseTest  : data: Hello Budhi from Thread Thread[#34,pool-2-thread-1,5,main]
+         */
+
+    }
+
+    @Test
+    void testHelloAsyncWithDynamicExecutor2() throws InterruptedException {
+
+        for (int i = 0; i < 100; i++) {
+            helloAsync.helloAsyncExecutionVirtualThread(); // task yang akan di jalankan setelah sleep 2 detik
+        }
+
+        log.info("after call testHelloAsyncWithDynamicExecutor2() async"); // task yang pertama kali di jalankan
+        Thread.sleep(Duration.ofSeconds(4)); // menunggu 4 detik // dari proses HelloAsync.hello() sleep 2 detik
+
+        /**
+         * result:
+         * 2023-10-27T15:46:57.631+07:00  INFO 12672 --- [           main] c.tutorial.testasync.AsynchoronouseTest  : after call testHelloAsyncWithDynamicExecutor2() async
+         * 2023-10-27T15:46:59.633+07:00  INFO 12672 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncExecutionVirtualThread() after 2 seconds VirtualThread[#37]/runnable@ForkJoinPool-1-worker-2
+         * 2023-10-27T15:46:59.632+07:00  INFO 12672 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncExecutionVirtualThread() after 2 seconds VirtualThread[#38]/runnable@ForkJoinPool-1-worker-8
+         * 2023-10-27T15:46:59.632+07:00  INFO 12672 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncExecutionVirtualThread() after 2 seconds VirtualThread[#36]/runnable@ForkJoinPool-1-worker-6
+         * 2023-10-27T15:46:59.633+07:00  INFO 12672 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncExecutionVirtualThread() after 2 seconds VirtualThread[#34]/runnable@ForkJoinPool-1-worker-7
+         * 2023-10-27T15:46:59.633+07:00  INFO 12672 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncExecutionVirtualThread() after 2 seconds VirtualThread[#42]/runnable@ForkJoinPool-1-worker-1
+         * 2023-10-27T15:46:59.633+07:00  INFO 12672 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncExecutionVirtualThread() after 2 seconds VirtualThread[#41]/runnable@ForkJoinPool-1-worker-4
+         * 2023-10-27T15:46:59.641+07:00  INFO 12672 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncExecutionVirtualThread() after 2 seconds VirtualThread[#45]/runnable@ForkJoinPool-1-worker-4
+         * 2023-10-27T15:46:59.641+07:00  INFO 12672 --- [               ] com.tutorial.data.HelloAsync             : run helloAsyncExecutionVirtualThread() after 2 seconds VirtualThread[#43]/runnable@ForkJoinPool-1-worker-3
+         */
+
+    }
+
 
 
 }

@@ -23,5 +23,9 @@ public class AsyncConfiguration {
         return Executors.newVirtualThreadPerTaskExecutor(); // implement ExecutorService  dengan yang baru implement virtual thread arsitektur Forkjoin
     } // bean dengan type Executor parent dari ExecutorService untuk membuat Thread pool atau ForkJoin pool
 
+    @Bean
+    public Executor singleTaskExecutor(){
+        return Executors.newSingleThreadExecutor(); // implementasi thread-pool dan max-thread-pool=1 thread untuk execution task worker
+    }
 
 }

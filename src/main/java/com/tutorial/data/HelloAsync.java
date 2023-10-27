@@ -43,4 +43,21 @@ public class HelloAsync {
         return future;
     }
 
+    @Async("taskExecutor")
+    @SneakyThrows
+    public void helloAsyncExecutionVirtualThread() {
+        Thread.sleep(Duration.ofSeconds(2));
+        log.info("run helloAsyncExecutionVirtualThread() after 2 seconds {}", Thread.currentThread());
+    }
+
+    @Async("singleTaskExecutor")
+    @SneakyThrows
+    public Future<String> helloAsyncWithFutureExecutionSingleThread(final String name){
+
+        CompletableFuture<String> future = new CompletableFuture<>();
+        Thread.sleep(Duration.ofSeconds(2));
+        future.complete("Hello " + name + " from Thread " + Thread.currentThread()); // Jika belum selesai, set nilai yang dikembalikan oleh get() dan metode terkait ke nilai yang diberikan.
+        return future;
+    }
+
 }
