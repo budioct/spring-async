@@ -43,7 +43,7 @@ public class HelloAsync {
         return future;
     }
 
-    @Async("taskExecutor")
+    @Async("taskExecutor") // dynamic executor spring async
     @SneakyThrows
     public void helloAsyncExecutionVirtualThread() {
         Thread.sleep(Duration.ofSeconds(2));
