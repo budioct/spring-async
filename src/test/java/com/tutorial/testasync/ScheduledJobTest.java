@@ -57,5 +57,32 @@ public class ScheduledJobTest {
 
     }
 
+    @Test
+    void testScheduledJobWithCronJob() throws InterruptedException {
+
+        Thread.sleep(Duration.ofSeconds(5));
+        Assertions.assertEquals(2L, job.getJob());
+
+        /**
+         * result:
+         * // setiap detik // per 1 detik
+         * 2023-10-27T23:29:46.012+07:00  INFO 1584 --- [pool-3-thread-1] com.tutorial.data.Job                    : run cronJob every second
+         * 2023-10-27T23:29:47.012+07:00  INFO 1584 --- [pool-3-thread-2] com.tutorial.data.Job                    : run cronJob every second
+         * 2023-10-27T23:29:47.513+07:00  INFO 1584 --- [pool-3-thread-1] com.tutorial.data.Job                    : 1 Run Job pool-3-thread-1
+         * 2023-10-27T23:29:48.013+07:00  INFO 1584 --- [pool-3-thread-3] com.tutorial.data.Job                    : run cronJob every second
+         * 2023-10-27T23:29:49.016+07:00  INFO 1584 --- [pool-3-thread-4] com.tutorial.data.Job                    : run cronJob every second
+         * 2023-10-27T23:29:49.518+07:00  INFO 1584 --- [pool-3-thread-1] com.tutorial.data.Job                    : 2 Run Job pool-3-thread-1
+         * 2023-10-27T23:29:50.001+07:00  INFO 1584 --- [pool-3-thread-2] com.tutorial.data.Job                    : run cronJob every second
+         * 2023-10-27T23:29:51.015+07:00  INFO 1584 --- [pool-3-thread-6] com.tutorial.data.Job                    : run cronJob every second
+         *
+         * // per 2 detik
+         * 2023-10-27T23:36:28.016+07:00  INFO 5676 --- [pool-3-thread-1] com.tutorial.data.Job                    : run Cron Job every second
+         * 2023-10-27T23:36:28.438+07:00  INFO 5676 --- [pool-3-thread-2] com.tutorial.data.Job                    : 1 Run Job pool-3-thread-2
+         * 2023-10-27T23:36:30.004+07:00  INFO 5676 --- [pool-3-thread-1] com.tutorial.data.Job                    : run Cron Job every second
+         * 2023-10-27T23:36:30.458+07:00  INFO 5676 --- [pool-3-thread-3] com.tutorial.data.Job                    : 2 Run Job pool-3-thread-3
+         * 2023-10-27T23:36:32.006+07:00  INFO 5676 --- [pool-3-thread-2] com.tutorial.data.Job                    : run Cron Job every second
+         */
+    }
+
 
 }

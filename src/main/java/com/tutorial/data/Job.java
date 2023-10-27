@@ -25,4 +25,19 @@ public class Job {
         return atomicLong.get();
     }
 
+    /**
+     * Cron Job
+     * ● Salah satu fitur menarik di Scheduled adalah, kita bisa menggunakan Cron Expression untuk
+     *   membuat jadwal schedule nya
+     * ● Kita bisa gunakan attribute cron di @Scheduled
+     *   https://crontab.guru/
+     */
+
+    // arutan expression * dari ke kanan sebanyak 6 digit * adalah:
+    // * second(0-59), * minute(0-59), * hour(0-23), * day of the month (1-31), * month (1-12) (or JAN-DEC), * day of the week (0-7) (0 or 7 is Sundy, or MON-SUN)
+    @Scheduled(cron = "*/2 * * * * *")
+    public void cronJob(){
+        log.info("run Cron Job every second");
+    }
+
 }
